@@ -24,8 +24,10 @@ class App extends React.Component {
             ...snapShot.data()
           });
         });
+        setCurrentUser({ userAuth });
+      } else {
+        setCurrentUser(null);
       }
-      setCurrentUser({ userAuth });
     });
   }
 
@@ -42,7 +44,8 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
           <Route
-            path="/login"
+            exact
+            path="/signin"
             render={() => (currentUser ? <Redirect to="/" /> : <LoginPage />)}
           />
         </Switch>
